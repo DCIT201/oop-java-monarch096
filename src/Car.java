@@ -10,6 +10,9 @@ public class Car extends Vehicle {
         this.carType = carType;
     }
 
+    public Car(String c1, String toyotaCorolla, double v) {
+    }
+
     @Override
     public double calculateRentalCost(int days) {
         double totalCost = getBaseRentalRate() * days;

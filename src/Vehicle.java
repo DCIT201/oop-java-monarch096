@@ -12,6 +12,10 @@ public abstract class Vehicle {
         this.availableForRental = true; // Default availability
     }
 
+    public Vehicle() {
+
+    }
+
     // Abstract Methods
     public abstract double calculateRentalCost(int days);
     public abstract boolean isAvailableForRental();

@@ -1,5 +1,3 @@
-
-
 import java.util.Scanner;
 
 public class Main {
@@ -36,21 +34,31 @@ public class Main {
                 System.out.println("3. Exit");
                 System.out.print("Choose an option: ");
 
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // consume the newline
+                int choice = 0;
+                try {
+                    choice = Integer.parseInt(scanner.nextLine());  // Handle non-integer input
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Please enter a valid number.");
+                    continue; // Skip the rest of the loop and prompt again
+                }
 
                 switch (choice) {
                     case 1:
                         // Show available vehicles
                         System.out.println("\nAvailable Vehicles for Rent:");
+                        boolean availableFound = false;
                         for (Vehicle vehicle : rentalAgency.getVehicles()) {
                             if (vehicle.isAvailableForRental()) {
+                                availableFound = true;
                                 System.out.println("Vehicle ID: " + vehicle.getVehicleId() + " | Type: " + vehicle.getClass().getSimpleName());
                             }
                         }
+                        if (!availableFound) {
+                            System.out.println("No vehicles are currently available for rent.");
+                        }
                         break;
 
-                    case 2: 
+                    case 2:
                         // Rent a vehicle
                         System.out.print("Enter the vehicle ID you want to rent: ");
                         String vehicleId = scanner.nextLine();
@@ -64,8 +72,18 @@ public class Main {
                         }
 
                         if (selectedVehicle != null) {
+                            int rentalDays = 0;
                             System.out.print("Enter rental duration in days: ");
-                            int rentalDays = scanner.nextInt();
+                            try {
+                                rentalDays = Integer.parseInt(scanner.nextLine());
+                                if (rentalDays <= 0) {
+                                    System.out.println("Error: Rental days must be a positive number.");
+                                    break;
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: Please enter a valid number for rental days.");
+                                break;
+                            }
 
                             // Rent the selected vehicle
                             RentalTransaction transaction = rentalAgency.rentVehicle(customer, selectedVehicle, rentalDays);
@@ -73,10 +91,10 @@ public class Main {
                             if (transaction != null) {
                                 System.out.println("\nRental Successful! Total rental cost: " + transaction.getRentalCost());
                             } else {
-                                System.out.println("The vehicle is not available for rental.");
+                                System.out.println("Error: The vehicle is not available for rental.");
                             }
                         } else {
-                            System.out.println("Vehicle not found or not available.");
+                            System.out.println("Error: Vehicle not found or not available for rental.");
                         }
                         break;
 
@@ -87,12 +105,12 @@ public class Main {
                         break;
 
                     default:
-                        System.out.println("Invalid choice. Please try again.");
+                        System.out.println("Error: Invalid choice. Please try again.");
                         break;
                 }
             }
         } else {
-            System.out.println("Invalid Admin login credentials.");
+            System.out.println("Error: Invalid Admin login credentials.");
         }
 
         scanner.close();

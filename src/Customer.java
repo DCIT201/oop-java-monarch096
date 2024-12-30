@@ -15,6 +15,9 @@ public class Customer {
         this.rentalHistory = new ArrayList<>();
     }
 
+    public Customer(String customerName) {
+    }
+
     // Method to add rental transaction
     public void addRentalTransaction(RentalTransaction transaction) {
         rentalHistory.add(transaction);

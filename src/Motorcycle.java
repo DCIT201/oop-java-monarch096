@@ -10,6 +10,10 @@ public class Motorcycle extends Vehicle {
         this.hasSidecar = hasSidecar;
     }
 
+    public Motorcycle(String m1, String yamahaR1, double v) {
+        super();
+    }
+
     @Override
     public double calculateRentalCost(int days) {
         double totalCost = getBaseRentalRate() * days;

@@ -10,6 +10,10 @@ public class RentalAgency {
         this.vehicles = vehicles;
     }
 
+    public RentalAgency() {
+
+    }
+
     // Rent vehicle method
     public RentalTransaction rentVehicle(Customer customer, Vehicle vehicle, int days) {
         if (vehicle.isAvailableForRental()) {
@@ -33,5 +37,28 @@ public class RentalAgency {
 
     public void setVehicles(Vehicle[] vehicles) {
         this.vehicles = List.of(vehicles);
+    }
+
+    public void processRental(String vehicleId, Customer customer, int days) {
+    }
+
+    public void displayAvailableVehicles() {
+    }
+
+    public void addVehicle(Truck truck) {
+    }
+
+    public Object getVehicleById(String vehicleId) {
+        return null;
+    }
+
+    public void returnVehicle(String returnId) {
+    }
+
+    public void addVehicle(Motorcycle motorcycle) {
+        
+    }
+
+    public void addVehicle(Car car) {
     }
 }

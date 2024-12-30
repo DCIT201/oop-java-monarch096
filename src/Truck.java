@@ -10,6 +10,9 @@ public class Truck extends Vehicle {
         this.loadCapacity = loadCapacity;
     }
 
+    public Truck(String t1, String volvoFh16, double loadCapacity) {
+    }
+
     @Override
     public double calculateRentalCost(int days) {
         double totalCost = getBaseRentalRate() * days;
